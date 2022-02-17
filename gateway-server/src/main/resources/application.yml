@@ -1,0 +1,20 @@
+server:
+  port: 8761
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: resource_server
+          uri: "lb://resource-server"
+          predicates:
+            - Path=/r**
+  application:
+    name: gateway-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8765/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
