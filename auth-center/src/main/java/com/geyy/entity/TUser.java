@@ -22,4 +22,6 @@ public class TUser {
     private String fullname;
 
     private String mobile;
+
+    private String email;
 }

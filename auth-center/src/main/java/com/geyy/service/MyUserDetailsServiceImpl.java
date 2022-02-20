@@ -52,7 +52,8 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
                 .authorities(array).build();*/
         UserDetailsExpand userDetailsExpand = new UserDetailsExpand(tUser.getUsername(), tUser.getPassword(), AuthorityUtils.createAuthorityList(array));
         userDetailsExpand.setId(tUser.getId());
-        userDetailsExpand.setEmail("geyaowei@yeah.net");
+        userDetailsExpand.setUsername(tUser.getUsername());
+        userDetailsExpand.setEmail(tUser.getEmail());
         userDetailsExpand.setMobile(tUser.getMobile());
         userDetailsExpand.setFullname(tUser.getFullname());
         return userDetailsExpand;

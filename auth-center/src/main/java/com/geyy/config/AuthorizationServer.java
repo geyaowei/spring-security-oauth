@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.OAuth2Request;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
@@ -48,6 +49,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Qualifier("accessTokenConverter")
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
@@ -66,7 +68,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         services.setTokenStore(tokenStore);
         /**
          * 无效的时间配置，token的有效期优先选择数据库中客户端的配置，如需修改，修改表oauth_client_details中的配置
-         * @see DefaultTokenServices#getAccessTokenValiditySeconds(org.springframework.security.oauth2.provider.OAuth2Request)
+         * @see DefaultTokenServices#getAccessTokenValiditySeconds(OAuth2Request)
          */
         services.setAccessTokenValiditySeconds(7200);
         services.setRefreshTokenValiditySeconds(259200);

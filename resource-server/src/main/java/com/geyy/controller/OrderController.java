@@ -23,7 +23,7 @@ public class OrderController {
     private ObjectMapper objectMapper;
 
     @GetMapping("/r1")
-    @PreAuthorize("hasAnyAuthority('r1')")//示请求者必须拥有r1权限，r1权限定义在auth-center服务表的t_permission表
+    @PreAuthorize("hasAnyAuthority('p1')")//示请求者必须拥有r1权限，r1权限定义在auth-center服务表的t_permission表
     public UserDetailsExpand  r1(){
         //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //        Object principal = authentication.getPrincipal();

@@ -1,7 +1,9 @@
 package com.geyy.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author geyaowei
